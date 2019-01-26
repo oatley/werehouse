@@ -1012,14 +1012,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4006159493670150, guid: 976cd1e68a1bb44e5a30e81d6193530b, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.40000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 4006159493670150, guid: 976cd1e68a1bb44e5a30e81d6193530b, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 976cd1e68a1bb44e5a30e81d6193530b, type: 2}
   m_IsPrefabAsset: 0
@@ -2563,11 +2555,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4217370096411174, guid: 207449a1e6088481d9de71375e9f3817, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4217370096411174, guid: 207449a1e6088481d9de71375e9f3817, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 5.39
       objectReference: {fileID: 0}
     - target: {fileID: 4217370096411174, guid: 207449a1e6088481d9de71375e9f3817, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2596,11 +2588,11 @@ Prefab:
       objectReference: {fileID: 1849194558}
     - target: {fileID: 4294674066538036, guid: 207449a1e6088481d9de71375e9f3817, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4294674066538036, guid: 207449a1e6088481d9de71375e9f3817, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4294674066538036, guid: 207449a1e6088481d9de71375e9f3817, type: 2}
       propertyPath: m_LocalScale.z
@@ -2608,8 +2600,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4294674066538036, guid: 207449a1e6088481d9de71375e9f3817, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0.669
       objectReference: {fileID: 0}
+    - target: {fileID: 114252295685823830, guid: 207449a1e6088481d9de71375e9f3817,
+        type: 2}
+      propertyPath: prefabHuman
+      value: 
+      objectReference: {fileID: 1766440749592188, guid: 976cd1e68a1bb44e5a30e81d6193530b,
+        type: 2}
+    - target: {fileID: 114585395748187400, guid: 207449a1e6088481d9de71375e9f3817,
+        type: 2}
+      propertyPath: playerWereHouse
+      value: 
+      objectReference: {fileID: 1849194558}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 207449a1e6088481d9de71375e9f3817, type: 2}
   m_IsPrefabAsset: 0

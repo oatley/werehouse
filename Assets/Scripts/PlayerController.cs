@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Public
 	public Rigidbody playerRigidBody;
+	public WereHouse playerWereHouse;
 
 	// Player
 	private string playerControlScheme;
@@ -150,13 +151,18 @@ public class PlayerController : MonoBehaviour {
             playerJumping = false;
 			playerOnGround = true;
         } else if (col.gameObject.tag == "Arson") {
-			col.gameObject.GetComponent<Rigidbody>().AddRelativeForce (Vector3.up * (playerRigidBody.velocity.magnitude / 2));
+			col.gameObject.GetComponent<Rigidbody>().AddRelativeForce (Vector3.up * (playerRigidBody.velocity.magnitude / 4));
 			// Make player lose control when taking dmg
 			playerRigidBody.AddRelativeForce (Vector3.up * playerJumpSpeed / 2);
 			playerJumping = true; // Disable in onCollisionEnter method
 			playerOnGround = false;
-			print(playerRigidBody.velocity);
-			playerRigidBody.velocity = Vector3.Reflect(playerRigidBody.velocity, Vector3.forward);
+			//print(playerRigidBody.velocity);
+			Vector3 newVelocity = Vector3.Reflect(playerRigidBody.velocity, Vector3.forward);
+			playerRigidBody.velocity = newVelocity;
+			// create ghosts
+			// make people fall out of the house
+			//newVelocity = Vector3.Reflect(playerRigidBody.velocity, Vector3.back);
+			playerWereHouse.DropPeople(playerRigidBody.velocity * 2f);
 		}
 		playerNumberOfCollisions +=1;
     }
