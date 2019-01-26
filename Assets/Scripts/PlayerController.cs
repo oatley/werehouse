@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour {
             playerJumping = false;
 			playerOnGround = true;
         } else if (col.gameObject.tag == "Arson") {
-			col.gameObject.GetComponent<Rigidbody>().AddRelativeForce (Vector3.up * (playerRigidBody.velocity.magnitude / 4));
+			col.gameObject.GetComponent<Rigidbody>().AddRelativeForce (Vector3.up * (playerRigidBody.velocity.magnitude));
 			// Make player lose control when taking dmg
 			playerRigidBody.AddRelativeForce (Vector3.up * playerJumpSpeed / 2);
 			playerJumping = true; // Disable in onCollisionEnter method

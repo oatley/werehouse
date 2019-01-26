@@ -17,7 +17,7 @@ public class Human : MonoBehaviour {
 		humanOnGround = false;
 		humanMaxSpeed = 5f;
 		humanForwardSpeed = 2f;
-		humanWalkTimer = 5f;
+		humanWalkTimer = 2f;
 		humanRotateSpeed = 50f;
 		currentTime = 0f;
 	}
@@ -29,7 +29,6 @@ public class Human : MonoBehaviour {
 			if (currentTime >= humanWalkTimer) {
 				currentTime = 0f;
 				ChangeDirection();
-				print("Change");
 			}
 			if (humanRigidBody.velocity.magnitude >= humanMaxSpeed) {
 				Vector3 newVelocity = humanRigidBody.velocity.normalized;
@@ -44,7 +43,11 @@ public class Human : MonoBehaviour {
 		humanRigidBody.AddRelativeForce (Vector3.forward * humanForwardSpeed);
 	}
 
-	void ChangeDirection() {
+	public void Grounded() {
+		humanOnGround = true;
+	}
+
+	public void ChangeDirection() {
 		float randomNumber = Random.Range(0.0f,2.0f);
 		if (randomNumber >=1.0f) { //left
 			this.transform.Rotate (Vector3.down * humanRotateSpeed);
@@ -54,7 +57,7 @@ public class Human : MonoBehaviour {
 	}
 
 	void OnCollisionStay(Collision col) {
-		if (col.gameObject.tag == "Ground") {
+		if (col.gameObject.tag == "Ground" || col.gameObject.tag == "Human" || col.gameObject.tag == "Arson" || col.gameObject.tag == "Building") {
 			humanOnGround = true;
 		} 
 	}
