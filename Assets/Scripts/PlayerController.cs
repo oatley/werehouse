@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//print(playerRigidBody.velocity.magnitude);
-		print(playerRigidBody.velocity.magnitude);
 		if (playerRigidBody.velocity.magnitude >= 25f) {
 			Vector3 newVelocity = playerRigidBody.velocity.normalized;
 			newVelocity = newVelocity * playerMaxSpeed;
@@ -97,7 +96,7 @@ public class PlayerController : MonoBehaviour {
 			playerRigidBody.AddRelativeForce (Vector3.forward * playerForwardSpeed);
 		}
 		if (Input.GetKey ("s")) { // Back
-			
+			playerRigidBody.AddRelativeForce (Vector3.back * (playerForwardSpeed / 2));
 		}
 		if (Input.GetKey ("a")) { // Left
 			this.transform.Rotate (Vector3.down * playerRotateSpeed);
@@ -150,7 +149,15 @@ public class PlayerController : MonoBehaviour {
         if(col.gameObject.tag == "Ground") {
             playerJumping = false;
 			playerOnGround = true;
-        } 
+        } else if (col.gameObject.tag == "Arson") {
+			col.gameObject.GetComponent<Rigidbody>().AddRelativeForce (Vector3.up * (playerRigidBody.velocity.magnitude / 2));
+			// Make player lose control when taking dmg
+			playerRigidBody.AddRelativeForce (Vector3.up * playerJumpSpeed / 2);
+			playerJumping = true; // Disable in onCollisionEnter method
+			playerOnGround = false;
+			print(playerRigidBody.velocity);
+			playerRigidBody.velocity = Vector3.Reflect(playerRigidBody.velocity, Vector3.forward);
+		}
 		playerNumberOfCollisions +=1;
     }
 
