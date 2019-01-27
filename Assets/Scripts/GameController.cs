@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour {
 	private int people;
 	private int ghosts;
 	private int score;
+	public int maxPeople;
+	public int numberOfPeople;
 
 	public void AddPerson() {
 		people += 1;
@@ -38,12 +40,14 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		DontDestroyOnLoad(this);
 		ResetGame();
+		maxPeople = 200;
 	}
 	
 	public void ResetGame () {
 		people = 3;
 		ghosts = 0;
 		score = 0;
+		numberOfPeople = 0;
 	}
 
 	public void StartSceneMainGame() {

@@ -27,7 +27,7 @@ public class WereHouse : MonoBehaviour {
 		ghostPeopleCount = gameController.GetGhosts();
 		ui_people.text = playerPeopleCount.ToString();
 		ui_ghosts.text = ghostPeopleCount.ToString();
-		timer = 30f;
+		timer = 60f;
 		ui_timer.text = Mathf.RoundToInt(timer).ToString();
 	}
 	
@@ -35,6 +35,7 @@ public class WereHouse : MonoBehaviour {
 		playerPeopleCount += 1;
 		gameController.AddPerson();
 		ui_people.text = playerPeopleCount.ToString();
+		gameController.numberOfPeople -= 1;
 	}
 
 	public void RemovePerson() {
@@ -44,6 +45,7 @@ public class WereHouse : MonoBehaviour {
 		gameController.RemovePerson();
 		ui_people.text = playerPeopleCount.ToString();
 		ui_ghosts.text = ghostPeopleCount.ToString();
+		gameController.numberOfPeople += 1;
 	}
 
 	// Update is called once per frame

@@ -15,7 +15,7 @@ public class Human : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		humanOnGround = false;
-		humanMaxSpeed = 5f;
+		humanMaxSpeed = 3f;
 		humanForwardSpeed = 2f;
 		humanWalkTimer = 2f;
 		humanRotateSpeed = 50f;

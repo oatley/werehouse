@@ -32,12 +32,12 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		// Controls
 		playerControlScheme = "Keyboard";
-		playerForwardSpeed = 25f;
+		playerForwardSpeed = 1800f;
 		playerRotateSpeed = 2f;
-		playerJumpSpeed = 500f;
+		playerJumpSpeed = 100f;
 		playerJumping = false;
 		playerOnGround = false;
-		playerMaxSpeed = 25f;
+		playerMaxSpeed = 200f;
 		playerNumberOfCollisions = 0;
 		playerGrabbingPeople = false;
 		grabbingTimer = 0f;
@@ -127,6 +127,7 @@ public class PlayerController : MonoBehaviour {
 			if (!playerGrabbingPeople) {
 				pickupBox.GetComponent<BoxCollider>().enabled = true;
 				playerGrabbingPeople = true;
+				print("grabbing people");
 			}
 			/* playerRigidBody.AddRelativeForce (Vector3.up * playerJumpSpeed); // Disable jumping
 			playerJumping = true; // Disable in onCollisionEnter method
