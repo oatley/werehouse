@@ -19,7 +19,7 @@ public class PeopleGrabber : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
 		if (col.gameObject.tag == "Human") {
 			print(col.gameObject.name);
-			playerWereHouse.playerPeopleCount += 1;
+			playerWereHouse.AddPerson(); // playerPeopleCount += 1;
 			Destroy(col.gameObject);
 		}
 	}
