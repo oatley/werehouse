@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour {
 
 	private int playerNumberOfCollisions;
 
+	public GameObject pickupBox;
+
+	private bool playerGrabbingPeople;
+	private float grabbingTimer;
+	private float totalGrabTime;
+
 	// Use this for initialization
 	void Start () {
 		// Controls
@@ -33,6 +39,10 @@ public class PlayerController : MonoBehaviour {
 		playerOnGround = false;
 		playerMaxSpeed = 25f;
 		playerNumberOfCollisions = 0;
+		playerGrabbingPeople = false;
+		grabbingTimer = 0f;
+		totalGrabTime = 0.6f;
+		pickupBox.GetComponent<BoxCollider>().enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -47,6 +57,14 @@ public class PlayerController : MonoBehaviour {
 			controls_player1_keyboard ();
 		} else if  (playerControlScheme == "Controller") {
 			controls_player1_xbox ();
+		}
+		if(playerGrabbingPeople) {
+			grabbingTimer += Time.deltaTime;
+			if (grabbingTimer >= totalGrabTime) {
+				playerGrabbingPeople = false;
+				pickupBox.GetComponent<BoxCollider>().enabled = false;
+				grabbingTimer = 0f;
+			}
 		}
 	}
 
@@ -105,10 +123,14 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey ("d")) { // Right
 			this.transform.Rotate (Vector3.up * playerRotateSpeed);
 		}
-		if (Input.GetKey ("space") && !playerJumping && playerNumberOfCollisions > 0) { // jump
-			playerRigidBody.AddRelativeForce (Vector3.up * playerJumpSpeed);
+		if (Input.GetKey ("space")) { //&& !playerJumping //&& playerNumberOfCollisions > 0) { // pickup
+			if (!playerGrabbingPeople) {
+				pickupBox.GetComponent<BoxCollider>().enabled = true;
+				playerGrabbingPeople = true;
+			}
+			/* playerRigidBody.AddRelativeForce (Vector3.up * playerJumpSpeed); // Disable jumping
 			playerJumping = true; // Disable in onCollisionEnter method
-			playerOnGround = false;
+			playerOnGround = false; */
 		}
 		if (Input.GetKey ("right")) {
 
@@ -150,7 +172,11 @@ public class PlayerController : MonoBehaviour {
         if(col.gameObject.tag == "Ground") {
             playerJumping = false;
 			playerOnGround = true;
-        } else if (col.gameObject.tag == "Arson") {
+        } else if (col.gameObject.tag == "Human") {
+			// Make a ghost
+			Vector3 pos = col.gameObject.transform.position;
+			Destroy(col.gameObject);
+		} else if (col.gameObject.tag == "Arson") {
 			col.gameObject.GetComponent<Rigidbody>().AddRelativeForce (Vector3.up * (playerRigidBody.velocity.magnitude));
 			// Make player lose control when taking dmg
 			playerRigidBody.AddRelativeForce (Vector3.up * playerJumpSpeed / 2);
